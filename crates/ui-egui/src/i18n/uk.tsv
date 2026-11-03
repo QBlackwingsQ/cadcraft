@@ -94,6 +94,7 @@
 	Blend	Плавне з'єднання
 	Block	Блок
 	Block Attribute Manager...	Диспетчер атрибутів блоків...
+	Block Description...	Опис блока...
 	Block Editor	Редактор блоків
 	Block Reference	Посилання на блок
 	Block...	Блок...
@@ -106,6 +107,7 @@
 	Box	Паралелепіпед
 	Break	Розірвати
 	Break At Point	Розірвати в точці
+	Break-line Symbol	Символ лінії розриву
 	Bring Above Objects	Над об'єктами
 	Bring Annotations to Front	Анотації на передній план
 	Bring to Front	На передній план
@@ -143,6 +145,7 @@
 	Close All Other Drawings	Закрити всі інші креслення
 	Closed	Замкнений
 	Close Comparison	Закрити порівняння
+	Export Comparison	Експортувати порівняння
 	Coincident	Збіг
 	Collapse Palettes	Згорнути палітри
 	Collapse Tool Sets	Згорнути набори інструментів
@@ -172,6 +175,7 @@
 	Contributors	Учасники
 	Control Vertices	Керувальні вершини
 	Convert	Перетворити
+	Convert Text to Mtext	Перетворити текст на багаторядковий текст
 	Copy	Копіювати
 	Copy Full File Path	Копіювати повний шлях до файлу
 	Copy History	Копіювати історію
@@ -189,6 +193,7 @@
 	Current selection	Поточний вибір
 	Current: {color}	Поточний: {color}
 	Cut	Вирізати
+	Cut with Base Point	Вирізати з базовою точкою
 	Cyan	Блакитний
 	Cylinder	Циліндр
 	DWG	DWG
@@ -253,6 +258,7 @@
 	Drawing Template (DWT)	Шаблон креслення (DWT)
 	Drawing Utilities	Утиліти креслення
 	Drawings (DWG, DXF)	Креслення (DWG, DXF)
+	AutoLISP (LSP)	AutoLISP (LSP)
 	SVG drawings (SVG, SVGZ)	Креслення SVG (SVG, SVGZ)
 	Dynamic	Динамічно
 	Dynamic Dimensions	Динамічні розміри
@@ -280,7 +286,7 @@
 	Enter a vertex editing option	Введіть параметр редагування вершини
 	Enter an option	Введіть параметр
 	Enter angle of xline	Введіть кут допоміжної прямої
-	Enter angle of xline (0) or	Введіть кут допоміжної прямої (0) або
+	Enter angle of xline (0)	Введіть кут допоміжної прямої (0)
 	Enter area of rectangle in current units	Введіть площу прямокутника в поточних одиницях
 	Enter attribute prompt	Введіть підказку атрибута
 	Enter attribute tag name	Введіть ім'я тегу атрибута
@@ -291,7 +297,7 @@
 	Enter default attribute value	Введіть типове значення атрибута
 	Enter degree of spline	Введіть степінь сплайна
 	Enter delta angle	Введіть зміну кута
-	Enter delta length or	Введіть зміну довжини або
+	Enter delta length	Введіть зміну довжини
 	Enter dimension text	Введіть розмірний текст
 	Enter dimension text (<> = measurement)	Введіть розмірний текст (<> = виміряне значення)
 	Enter dimension value or [name=expression]	Введіть розмірне значення або [name=expression]
@@ -321,11 +327,14 @@
 	Equal	Рівність
 	Erase	Стерти
 	Evaluate	Обчислити
+	Evaluate LISP	Обчислити LISP
 	Exclude from new selection set	Виключити з нового набору вибраних об'єктів
 	Explode	Розчленувати
+	Explode Attributes to Text	Розчленувати атрибути в текст
 	Export	Експортувати
 	Export Table	Експортувати таблицю
 	Export to PDF...	Експортувати в PDF...
+	Express Tools	Інструменти Express
 	Expression	Вираз
 	Extend	Подовжити
 	Extension	Продовження
@@ -405,6 +414,10 @@
 	How to apply:	Спосіб застосування:
 	ID Point	Координати точки
 	Import	Імпортувати
+	Align Multileaders	Вирівняти мультивиноски
+	Collect	Зібрати
+	Collect Multileaders	Зібрати мультивиноски
+	Edit Multileader	Редагувати мультивиноску
 	In	Наблизити
 	In-window Menu Bar	Рядок меню у вікні
 	Include in new selection set	Включити до нового набору вибраних об'єктів
@@ -496,6 +509,7 @@
 	List Text Styles	Список текстових стилів
 	Load all	Завантажити всі
 	Load...	Завантажити...
+	Load Application...	Завантажити застосунок...
 	Loaded linetypes	Завантажені типи ліній
 	Lock	Заблокувати
 	Lock Layer	Заблокувати шар
@@ -526,6 +540,7 @@
 	Models	Моделі
 	Modify	Модифікація
 	Move	Перемістити
+	Move/Copy/Rotate	Перемістити/Копіювати/Повернути
 	Multileader	Мультивиноска
 	Multileader Style...	Стиль мультивиносок...
 	Multileader style	Стиль мультивиносок
@@ -539,6 +554,7 @@
 	N	Пн
 	Name	Назва
 	Name (A–Z)	Назва (А–Я)
+	Named Viewports...	Іменовані видові екрани...
 	Named Views...	Іменовані види...
 	Nearest	Найближча точка
 	New	Створити
@@ -582,11 +598,14 @@
 	One of the Crafting Apps by the ArtCraft team and community.	Одна з програм Crafting Apps від команди та спільноти ArtCraft.
 	Only in this drawing: {n}	Лише в цьому кресленні: {n}
 	Only in {name}: {n}	Лише в {name}: {n}
+	Oops	Відновити стерті об'єкти
 	Open (⌘O)	Відкрити (⌘O)
 	Open Sample Drawing	Відкрити зразок креслення
 	Open sample drawing	Відкрити зразок креслення
 	Open Xref	Відкрити зовнішнє посилання
 	Open...	Відкрити...
+	Open Recent	Відкрити нещодавні
+	Clear Recent Files	Очистити список нещодавніх файлів
 	Operator:	Оператор:
 	Orbit	Орбіта
 	Ordinate	Ординатний
@@ -622,6 +641,7 @@
 	Plot	Друк креслення
 	Plot (click: do not plot)	Друкувати (натисніть, щоб вимкнути друк)
 	Plot Preview	Попередній перегляд друку
+	Plot Window	Вікно друку
 	Plot style	Стиль друку
 	Plot style attached to	Стиль друку застосовано до
 	Plot style table	Таблиця стилів друку
@@ -733,6 +753,7 @@
 	Rename Text Style	Перейменувати текстовий стиль
 	Rename...	Перейменувати...
 	Repeat {command}	Повторити {command}
+	Replace Block...	Замінити блок...
 	Requires a point (x,y, @dx,dy or @d<a).	Потрібна точка (x,y, @dx,dy або @d<a).
 	Reset Palettes	Скинути палітри
 	Restore	Відновити
@@ -782,8 +803,8 @@
 	Select an arc or circle	Виберіть дугу або коло
 	Select an arc.	Виберіть дугу.
 	Select an object	Виберіть об'єкт
-	Select an object to change or	Виберіть об'єкт для зміни або
-	Select an object to measure or	Виберіть об'єкт для вимірювання або
+	Select an object to change	Виберіть об'єкт для зміни
+	Select an object to measure	Виберіть об'єкт для вимірювання
 	Select an object.	Виберіть об'єкт.
 	Select an open curve.	Виберіть незамкнену криву.
 	Select an open line, arc, polyline, ellipse arc or spline.	Виберіть незамкнений відрізок, дугу, полілінію, еліптичну дугу або сплайн.
@@ -797,9 +818,8 @@
 	Select first line	Виберіть перший відрізок
 	Select first line or arc	Виберіть перший відрізок або дугу
 	Select first object	Виберіть перший об'єкт
-	Select first object or	Виберіть перший об'єкт або
 	Select first point	Виберіть першу точку
-	Select nested objects to copy or	Виберіть вкладені об'єкти для копіювання або
+	Select nested objects to copy	Виберіть вкладені об'єкти для копіювання
 	Select object	Виберіть об'єкт
 	Select object to dimension	Виберіть об'єкт для нанесення розміру
 	Select object to divide	Виберіть об'єкт для поділу
@@ -812,10 +832,15 @@
 	Select objects to array.	Виберіть об'єкти для масиву.
 	Select objects to stretch by crossing-window or crossing-polygon...	Виберіть об'єкти для розтягування січною рамкою або січним багатокутником...
 	Select objects:	Виберіть об'єкти:
+	Add to Working Set	Додати до робочого набору
+	Edit Reference In-Place	Редагувати посилання на місці
+	Save Reference Edits	Зберегти зміни посилання
+	Working Set	Робочий набір
+	Xref and Block In-place Editing	Редагування xref і блоків на місці
 	Select one polyline (Multiple is available through the JSON form).	Виберіть одну полілінію (Multiple доступно через JSON).
 	Select path curve	Виберіть криву траєкторії
 	Select point or object	Виберіть точку або об'єкт
-	Select polyline or	Виберіть полілінію або
+	Select polyline	Виберіть полілінію
 	Select second line	Виберіть другий відрізок
 	Select second line or shift-select to apply corner	Виберіть другий відрізок або виберіть із Shift, щоб утворити кут
 	Select second object	Виберіть другий об'єкт
@@ -875,9 +900,8 @@
 	Specify axis endpoint of ellipse	Укажіть кінцеву точку осі еліпса
 	Specify base diameter	Укажіть діаметр основи
 	Specify base point	Укажіть базову точку
-	Specify base point or	Укажіть базову точку або
 	Specify base point or displacement (drag with the middle mouse button for realtime pan)	Укажіть базову точку або зміщення (перетягуйте середньою кнопкою миші для панорамування)
-	Specify base radius or	Укажіть радіус основи або
+	Specify base radius	Укажіть радіус основи
 	Specify center of donut	Укажіть центр кільця
 	Specify center of ellipse	Укажіть центр еліпса
 	Specify center of polygon	Укажіть центр багатокутника
@@ -919,7 +943,7 @@
 	Specify first point on circle: _tan to	Укажіть першу точку на колі: _tan до
 	Specify first source point	Укажіть першу вихідну точку
 	Specify height	Укажіть висоту
-	Specify helix height or	Укажіть висоту спіралі або
+	Specify helix height	Укажіть висоту спіралі
 	Specify included angle	Укажіть кут між сторонами
 	Specify insertion base point	Укажіть базову точку вставлення
 	Specify insertion point	Укажіть точку вставлення
@@ -931,33 +955,62 @@
 	Command line history	Історія командного рядка
 	Copy as JSON	Копіювати як JSON
 	Crosshair size	Розмір перехрестя
+	Crossing selection color:	Колір секучого вибору:
 	Display	Відображення
+	Exclude:	Виключити:
 	Grip size	Розмір ручок
+	Grips	Ручки
+	Groups	Групи
+	Hatches	Штрихування
 	Hold Shift to add to the selection	Утримувати Shift, щоб додати до вибору
+	Indicate selection area	Показувати область вибору
 	Interface language	Мова інтерфейсу
 	Interface theme	Тема інтерфейсу
 	Keep the system cursor visible over the drawing area	Показувати системний курсор над областю креслення
 	Largest array	Найбільший масив
 	Layout paper	Папір аркуша
 	Model background	Тло простору моделі
+	Multiline text	Багаторядковий текст
+	Object grouping	Групування об'єктів
+	Object selection limit for display of grips	Межа кількості вибраних об'єктів для показу ручок
 	Object snap aperture	Апертура об'єктної прив'язки
 	Object snap marker size	Розмір маркера об'єктної прив'язки
+	Objects on locked layers	Об'єкти на заблокованих шарах
 	Open and Save	Відкриття та збереження
 	Options	Параметри
 	Options...	Параметри...
 	Pickbox size	Розмір прицілу вибору
+	Preview	Попередній перегляд
 	Profiles	Профілі
 	Reset keeps the interface language.	Скидання не змінює мову інтерфейсу.
 	Reset to Defaults	Скинути до типових
 	Save new drawings as	Зберігати нові креслення як
+	Units of new drawings	Одиниці нових креслень
+	Imperial (inches)	Імперські (дюйми)
+	Metric (millimetres)	Метричні (міліметри)
+	New and the first drawing at startup use these units unless a default template is set (QNEWTEMPLATE).	Команда «Створити» і перше креслення під час запуску використовують ці одиниці, якщо не задано типовий шаблон (QNEWTEMPLATE).
 	Screen magnifiers, screen readers and recorders follow the system cursor.	Екранні лупи, програми читання з екрана та запису стежать за системним курсором.
 	Select objects first, then choose a command	Спочатку вибирати об'єкти, потім команду
 	Selection	Вибір
+	Selection Area Effect	Ефект області вибору
+	Selection Preview Filter	Фільтр попереднього перегляду вибору
+	Selection area opacity:	Непрозорість області вибору:
+	Selection effect color	Колір ефекту вибору
+	Selection modes	Режими вибору
+	Selection preview	Попередній перегляд вибору
 	Settings...	Налаштування...
 	Show Quick Properties for selected objects	Показувати швидкі властивості вибраних об'єктів
+	Show grips	Показувати ручки
 	Snap, grid, polar tracking and Dynamic Input:	Крок, сітка, полярне відстеження та динамічне введення:
+	Tables	Таблиці
 	The aperture is how near the cursor must come to a point for an object snap to find it.	Апертура — це наскільки близько курсор має підійти до точки, щоб об'єктна прив'язка її знайшла.
 	User Preferences	Налаштування користувача
+	Visual Effect Settings	Параметри візуальних ефектів
+	Visual Effect Settings...	Параметри візуальних ефектів...
+	When a command is active	Коли команда активна
+	When no command is active	Коли жодна команда не активна
+	Window selection color:	Колір вибору рамкою:
+	Xrefs	Зовнішні посилання
 	objects	об'єктів
 	Specify inside diameter of donut	Укажіть внутрішній діаметр кільця
 	Specify leader arrowhead location	Укажіть розташування стрілки виноски
@@ -974,7 +1027,6 @@
 	Specify new width for all segments	Укажіть нову ширину всіх сегментів
 	Specify next point	Укажіть наступну точку
 	Specify offset distance	Укажіть відстань зміщення
-	Specify offset distance or	Укажіть відстань зміщення або
 	Specify opposite corner	Укажіть протилежний кут
 	Specify other corner point	Укажіть іншу кутову точку
 	Specify other endpoint of axis	Укажіть іншу кінцеву точку осі
@@ -987,7 +1039,6 @@
 	Specify radius of circle	Укажіть радіус кола
 	Specify rotation angle	Укажіть кут повороту
 	Specify rotation angle of text	Укажіть кут повороту тексту
-	Specify rotation angle or	Укажіть кут повороту або
 	Specify scale factor	Укажіть коефіцієнт масштабу
 	Specify second angle endpoint	Укажіть другу кінцеву точку кута
 	Specify second break point	Укажіть другу точку розриву
@@ -1020,9 +1071,9 @@
 	Specify third source point or <continue>	Укажіть третю вихідну точку або <продовжити>
 	Specify through point	Укажіть точку, через яку проходить пряма
 	Specify top diameter	Укажіть діаметр вершини
-	Specify top radius or	Укажіть радіус вершини або
+	Specify top radius	Укажіть радіус вершини
 	Specify total angle	Укажіть загальний кут
-	Specify total length or	Укажіть загальну довжину або
+	Specify total length	Укажіть загальну довжину
 	Specify width for rectangles	Укажіть ширину прямокутників
 	Sphere	Сфера
 	Spline	Сплайн
@@ -1140,7 +1191,7 @@
 	Viewport {id}	Видовий екран {id}
 	Viewports	Видові екрани
 	W	Зх
-	WCS ⌄	ССК ⌄
+	WCS	ССК
 	White	Білий
 	Width factor	Коефіцієнт ширини
 	Window	Вікно
@@ -1178,6 +1229,9 @@
 	Hide Others	Приховати інші
 	Accessibility	Спеціальні можливості
 	Show System Cursor	Показувати системний курсор
+	Animation Effects	Ефекти анімації
+	Animation effects	Ефекти анімації
+	Interface scale	Масштаб інтерфейсу
 	Import...	Імпорт...
 	Export...	Експорт...
 	Batch Publish...	Пакетна публікація...
@@ -1226,6 +1280,96 @@
 	Automatic save every	Автозбереження кожні
 	min	хв
 	Automatic save file location	Папка файлів автозбереження
+	Backup copy	Резервна копія
+	Create backup copy with each save	Створювати резервну копію під час кожного збереження
 	Drawings with no file yet are saved in the default version. 0 minutes turns automatic save off.	Креслення, що ще не мають файлу, зберігаються в типовій версії. 0 хвилин вимикає автозбереження.
 	Time-sensitive right-click: a quick click is Enter, holding opens the menu	Клік правою кнопкою з урахуванням часу: швидкий клік — Enter, утримання відкриває меню
 	Turned off, a right-click while a command runs always opens the shortcut menu.	Якщо вимкнено, клік правою кнопкою під час команди завжди відкриває контекстне меню.
+	Hatch Pattern	Зразок штрихування
+	Search for pattern	Пошук зразка
+	Run Script...	Виконати сценарій...
+	Query Texts	Запит текстів
+	Analyze Shapes	Аналіз фігур
+	Analyze Usage	Аналіз використання
+	Implied Loops	Неявні контури
+	Hatch Pick	Вибір для штрихування
+# Hatch and Gradient dialog
+	Hatch and Gradient	Штрихування та градієнт
+	Color 1	Колір 1
+	Color 2	Колір 2
+	Shape	Форма
+	Curved	Вигнутий
+	Spherical	Сферичний
+	Hemispherical	Напівсферичний
+	Inverted	Інвертований
+	Centered	По центру
+	Hatch origin	Початок штрихування
+	Use current origin	Використати поточний початок
+	Specified origin	Заданий початок
+	Click to set new origin	Клацніть, щоб задати новий початок
+	Default to boundary extents	Типово за габаритами контуру
+	Bottom left	Унизу ліворуч
+	Bottom right	Унизу праворуч
+	Top left	Угорі ліворуч
+	Top right	Угорі праворуч
+	Boundaries	Контури
+	Add: Pick points	Додати: вказати точки
+	Add: Select objects	Додати: вибрати об'єкти
+	Boundaries picked: {n}	Вибрано контурів: {n}
+	Select boundaries to remove	Виберіть контури для видалення
+	Island	Острів
+	Associative	Асоціативне
+	Create separate hatches	Створити окремі штрихування
+	Island detection	Виявлення островів
+	Normal	Звичайне
+	Outer	Зовнішнє
+	Ignore	Ігнорувати
+	Origin: {x}, {y}	Початок: {x}, {y}
+	Sheet Books to PDF...	Книги аркушів у PDF...
+	Not a number or distance: {text}	Не число й не відстань: {text}
+	Dynamic Block Data	Дані динамічного блока
+	Custom	Користувацькі
+	Dynamic Block Reference	Посилання на динамічний блок
+	Set Dynamic Property	Задати динамічну властивість
+	Dynamic Block Grips	Ручки динамічного блока
+	Drag Dynamic Grip	Перетягнути ручку динамічного блока
+# Block Editor (BEDIT).
+	Save Block	Зберегти блок
+	Save Block As	Зберегти блок як
+	Close Block Editor	Закрити редактор блоків
+	Unsaved changes	Незбережені зміни
+	Edit Block Definition	Редагувати визначення блока
+	Block to create or edit	Блок для створення або редагування
+	Open in Block Editor	Відкрити в редакторі блоків
+	This drawing	Це креслення
+	contains authoring elements. Open in Block Editor?	містить елементи розробки. Відкрити в редакторі блоків?
+	New block	Новий блок
+	Italic	Курсив
+	Underline	Підкреслений
+	Overline	Надкреслений
+	Justify	За шириною
+	Text color	Колір тексту
+	Click the ruler to add a tab stop, right-click to remove one	Натисніть на лінійку, щоб додати табуляцію; права кнопка видаляє її
+	Select using two clicks only	Вибирати лише двома клацаннями
+	Define each corner of the selection window with a separate click.	Задайте кожен кут рамки вибору окремим клацанням.
+	Type an alias name.	Введіть назву псевдоніма.
+	Choose the command the alias starts.	Виберіть команду, яку запускає псевдонім.
+	{command} is an unknown command.	{command} — невідома команда.
+	{alias} is already defined; select it and use Edit.	{alias} уже визначено; виберіть його та натисніть «Змінити».
+	More than {n} aliases.	Понад {n} псевдонімів.
+	Alias file: {file}	Файл псевдонімів: {file}
+	No alias file loaded. REINIT replaces these aliases with a file's.	Файл псевдонімів не завантажено. REINIT замінює ці псевдоніми псевдонімами з файлу.
+	Alias	Псевдонім
+	Command	Команда
+	overrides built-in	замінює вбудований
+	built-in	вбудований
+	Add…	Додати…
+	Edit…	Змінити…
+	Save alias	Зберегти псевдонім
+	Discard	Скасувати зміни
+	Customize	Налаштування інтерфейсу
+	Edit Command Aliases (PGP)...	Редагувати псевдоніми команд (PGP)...
+	Check for Updates…	Перевірити оновлення…
+	CADCraft is up to date.	Встановлено найновішу версію CADCraft.
+	Could not check for updates.	Не вдалося перевірити оновлення.
+	Save changes to block "{name}"?	Зберегти зміни в блоці «{name}»?

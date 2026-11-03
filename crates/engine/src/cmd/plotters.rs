@@ -11,9 +11,11 @@
 use std::sync::{Mutex, OnceLock};
 
 use cadcraft_doc::{DevicePaper, Orientation, PageSetup, PlotOutput, PlotterConfig};
+use cadcraft_geom::{Bounds2, Vec2};
 use serde_json::{Value, json};
 
-use super::*;
+use super::{CommandSpec, Result, always, bad, has_doc, point_req, str_param};
+
 use crate::{Accept, EngineError, Input, Interactive, Prompt, Session, Step};
 
 /// Where plotter configuration files live. Names are file names ending in
@@ -59,23 +61,13 @@ impl PlotterStore {
         }
     }
 
-    /// The `plotters` folder of the CADCraft settings directory (`CADCRAFT_CONFIG_DIR`, else
-    /// the platform's settings directory).
+    /// The `plotters` folder of the CADCraft settings directory ([`crate::settings_dir::current`]).
     #[cfg(not(target_arch = "wasm32"))]
     pub fn settings_folder() -> PlotterStore {
         fn dir() -> std::result::Result<std::path::PathBuf, String> {
-            use std::path::PathBuf;
-            let get = |k: &str| std::env::var_os(k).filter(|v| !v.is_empty()).map(PathBuf::from);
-            let root = match std::env::var_os("CADCRAFT_CONFIG_DIR") {
-                Some(r) if !r.is_empty() => Some(PathBuf::from(r)),
-                Some(_) => None,
-                None => match std::env::consts::OS {
-                    "macos" => get("HOME").map(|h| h.join("Library/Application Support/CADCraft")),
-                    "windows" => get("APPDATA").map(|r| r.join("CADCraft")),
-                    _ => get("XDG_CONFIG_HOME").map(|r| r.join("cadcraft")).or_else(|| get("HOME").map(|h| h.join(".config/cadcraft"))),
-                },
-            };
-            root.map(|r| r.join("plotters")).ok_or_else(|| "there is no settings folder for plotter configurations".to_string())
+            crate::settings_dir::current()
+                .map(|r| r.join("plotters"))
+                .ok_or_else(|| "there is no settings folder for plotter configurations".to_string())
         }
         /// A plain file name of ours (no separators, no parent references).
         fn file(n: &str) -> std::result::Result<std::path::PathBuf, String> {
@@ -109,9 +101,7 @@ impl PlotterStore {
             write: |n, t| {
                 let p = file(n)?;
                 std::fs::create_dir_all(dir()?).map_err(|e| e.to_string())?;
-                let tmp = p.with_extension("json.cadcraft-tmp");
-                std::fs::write(&tmp, t).map_err(|e| format!("{n}: {e}"))?;
-                std::fs::rename(&tmp, &p).map_err(|e| format!("{n}: {e}"))
+                crate::atomic_write::write_atomic(&p, t.as_bytes()).map_err(|e| format!("{n}: {e}"))
             },
             delete: |n| std::fs::remove_file(file(n)?).map_err(|e| format!("{n}: {e}")),
         }
@@ -233,7 +223,7 @@ fn unknown_device(cmd: &str, name: &str) -> EngineError {
 /// paper's printable area. A device change also takes the device's default orientation unless
 /// `landscape` is given. Returns whether the paper was set here (else `paper`, if any, is a
 /// standard size for the caller to look up).
-pub(crate) fn page_device(cmd: &str, p: &Value, page: &mut PageSetup) -> Result<bool> {
+pub fn page_device(cmd: &str, p: &Value, page: &mut PageSetup) -> Result<bool> {
     let given = match p.get("device") {
         Some(v) => Some(v.as_str().ok_or_else(|| bad(cmd, "`device` must be a plotter name"))?.trim()),
         None => None,
@@ -285,9 +275,9 @@ pub(crate) fn plot_options(s: &Session, p: &Value, cmd: &str) -> Result<Value> {
     let layout = match str_param(p, "layout") {
         Some(n) if n.eq_ignore_ascii_case("model") => None,
         Some(n) => s.doc()?.layout(n).map(|l| l.page.clone()),
-        None => match s.space() {
-            cadcraft_doc::Space::Paper(n) => s.doc()?.layout(&n).map(|l| l.page.clone()),
-            cadcraft_doc::Space::Model => None,
+        None => match s.space().layout() {
+            Some(n) => s.doc()?.layout(n).map(|l| l.page.clone()),
+            None => None,
         },
     };
     let dev = match given {
@@ -325,10 +315,86 @@ pub(crate) fn plot_options(s: &Session, p: &Value, cmd: &str) -> Result<Value> {
     Ok(out)
 }
 
+/// Whether a plot draws transparency, as PLOTTRANSPARENCYOVERRIDE decides: 0 never, 2 always,
+/// otherwise the plot's `plotTransparency` (`None` when it has none: the page setup decides).
+pub(crate) fn plot_transparency(s: &Session, p: &Value) -> Option<bool> {
+    match s.settings.plot_transparency_override {
+        0 => Some(false),
+        2 => Some(true),
+        _ => p.get("plotTransparency").and_then(Value::as_bool),
+    }
+}
+
+// ---------- PLOTWINDOW ----------
+
+fn run_plotwindow(s: &mut Session, p: &Value) -> Result<Value> {
+    let (a, b) = (point_req("plotwindow", p, "p1")?, point_req("plotwindow", p, "p2")?);
+    set_plot_window(s, a, b)
+}
+
+fn set_plot_window(s: &mut Session, a: Vec2, b: Vec2) -> Result<Value> {
+    let w = Bounds2::new(a, b);
+    if !(w.width() > 0.0 && w.height() > 0.0) {
+        return Err(bad("plotwindow", "the window needs a width and a height"));
+    }
+    s.plot_window = Some(w);
+    Ok(json!({ "window": [[w.min.x, w.min.y], [w.max.x, w.max.y]] }))
+}
+
+/// PLOTWINDOW: two corners picked in the drawing, with the window's rectangle following the cursor.
+#[derive(Default)]
+struct PlotWindowM {
+    first: Option<Vec2>,
+}
+
+impl Interactive for PlotWindowM {
+    fn name(&self) -> &'static str {
+        "PLOTWINDOW"
+    }
+    /// Ask for the first corner, then for the opposite one marked as a rectangle corner
+    /// (`Prompt::corner`), so ORTHO does not bend the pick and the window keeps its area.
+    fn prompt(&self, _s: &Session) -> Prompt {
+        match self.first {
+            None => Prompt::new("Specify first corner", Accept::POINT),
+            Some(a) => Prompt::new("Specify opposite corner", Accept::POINT).corner(a),
+        }
+    }
+    fn input(&mut self, s: &mut Session, i: Input) -> Result<Step> {
+        match (i, self.first) {
+            (Input::Point(p), None) => {
+                self.first = Some(p);
+                Ok(Step::Continue)
+            }
+            (Input::Point(p), Some(a)) => {
+                set_plot_window(s, a, p)?;
+                Ok(Step::Done)
+            }
+            (Input::Cancel, _) => Ok(Step::Cancel),
+            _ => Ok(Step::Continue),
+        }
+    }
+    fn preview(&self, _s: &Session, c: Vec2) -> Vec<cadcraft_doc::EntityKind> {
+        let Some(a) = self.first else { return Vec::new() };
+        let corners = [a, Vec2::new(c.x, a.y), c, Vec2::new(a.x, c.y), a];
+        corners
+            .windows(2)
+            .filter_map(|w| match w {
+                [p, q] => Some(super::helpers::line(*p, *q)),
+                _ => None,
+            })
+            .collect()
+    }
+}
+
 // ---------- PLOTTERMANAGER ----------
 
 pub fn specs() -> Vec<CommandSpec> {
     vec![
+        CommandSpec::new("plotwindow", "Plot Window", run_plotwindow)
+            .params("{p1: [x,y], p2: [x,y]} (typed: two corners): the window the Plot dialog's \"Window <\" plots, kept in the session")
+            .enabled(has_doc)
+            .noundo()
+            .interactive(|_| Ok(Box::new(PlotWindowM::default()))),
         CommandSpec::new("plottermanager", "Plotter Manager...", run_plottermanager)
             .menu(&["File", "Plotter Manager..."])
             .params(

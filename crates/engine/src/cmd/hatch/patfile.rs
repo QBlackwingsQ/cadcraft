@@ -13,7 +13,7 @@ use cadcraft_doc::library::{PatternLine, pattern, standard_patterns};
 use serde_json::{Value, json};
 
 use super::super::helpers::support_text;
-use super::*;
+use super::{Result, Session, bad, bool_or};
 
 /// Most user patterns held at once.
 pub const MAX_USER_PATTERNS: usize = 4096;
@@ -41,6 +41,25 @@ pub(crate) fn lines_for(name: &str) -> Vec<PatternLine> {
 pub(crate) fn names() -> Vec<String> {
     let mut v: Vec<String> = standard_patterns().iter().map(|p| p.name.to_string()).collect();
     v.extend(store().iter().map(|p| p.name.clone()));
+    v
+}
+
+/// A pattern offered for new hatches: a library pattern or one a `.pat` file loaded.
+#[derive(Clone, Debug, PartialEq)]
+pub struct PatternChoice {
+    pub name: String,
+    pub description: String,
+    /// The line families at unit scale (none for SOLID).
+    pub lines: Vec<PatternLine>,
+}
+
+/// Every pattern offered for new hatches, in the order of [`names`], for a pattern picker.
+pub fn pattern_choices() -> Vec<PatternChoice> {
+    let mut v: Vec<PatternChoice> = standard_patterns()
+        .into_iter()
+        .map(|p| PatternChoice { name: p.name.to_string(), description: p.description.to_string(), lines: p.lines })
+        .collect();
+    v.extend(store().iter().map(|p| PatternChoice { name: p.name.clone(), description: p.description.clone(), lines: p.lines.clone() }));
     v
 }
 
